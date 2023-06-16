@@ -2,10 +2,10 @@ package com.dawinder.musicplayer_jetpackcompose.model
 
 data class Song(
     val songId: Int?,
-    val songName: String,
-    val songUrl: String,
-    val songImage: Int,
-    val singerName: String,
+    val songName: String = "",
+    val songUrl: String = "",
+    val songImage: Int = 0,
+    val singerName: String = "",
     val isPlaying: Boolean = false
 ) {
     companion object {

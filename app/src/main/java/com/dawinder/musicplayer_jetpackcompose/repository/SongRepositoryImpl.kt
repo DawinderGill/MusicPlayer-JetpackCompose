@@ -2,8 +2,10 @@ package com.dawinder.musicplayer_jetpackcompose.repository
 
 import com.dawinder.musicplayer_jetpackcompose.R
 import com.dawinder.musicplayer_jetpackcompose.model.Song
+import javax.inject.Inject
 
-object SongRepositoryImpl : SongRepository{
+
+class SongRepositoryImpl @Inject constructor() : SongRepository {
     private val songs = mutableListOf<Song>()
 
     init {

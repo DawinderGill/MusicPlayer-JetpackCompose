@@ -4,14 +4,17 @@ import com.dawinder.musicplayer_jetpackcompose.repository.SongRepository
 import com.dawinder.musicplayer_jetpackcompose.repository.SongRepositoryImpl
 import dagger.Binds
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class DataModule {
-    @Binds
+class DataModule {
+    @Provides
     @Singleton
-    abstract fun provideSongRepository(songRepository: SongRepositoryImpl): SongRepository
+    fun provideSongRepository(songRepository: SongRepositoryImpl): SongRepository {
+        return songRepository
+    }
 }
