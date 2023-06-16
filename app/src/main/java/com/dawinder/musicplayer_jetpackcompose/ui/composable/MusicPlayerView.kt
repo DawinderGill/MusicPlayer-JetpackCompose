@@ -35,7 +35,12 @@ import com.dawinder.musicplayer_jetpackcompose.ui.theme.typography
 import com.example.compose.md_theme_light_primaryContainer
 
 @Composable
-fun BottomScreenContent(selectedSong: Song, onItemClick: () -> Unit) {
+fun BottomScreenContent(
+    selectedSong: Song, onItemClick: () -> Unit,
+    onPreviousClick: () -> Unit,
+    onPlayPauseClick: () -> Unit,
+    onNextClick: () -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -69,23 +74,29 @@ fun BottomScreenContent(selectedSong: Song, onItemClick: () -> Unit) {
                     .weight(1f)
             )
             // Previous Icon
-            Icon(
-                imageVector = Icons.Default.KeyboardArrowLeft,
-                contentDescription = null, // Provide a proper content description
-                modifier = Modifier.clickable { }
-            )
+            IconButton(onClick = onPreviousClick) {
+                Icon(
+                    imageVector = Icons.Default.KeyboardArrowLeft,
+                    contentDescription = null, // Provide a proper content description
+                    modifier = Modifier.size(45.dp)
+                )
+            }
             // Play/Pause Icon
-            Icon(
-                imageVector = Icons.Default.PlayArrow,
-                contentDescription = null, // Provide a proper content description
-                modifier = Modifier.clickable { }
-            )
+            IconButton(onClick = onPlayPauseClick) {
+                Icon(
+                    imageVector = Icons.Default.PlayArrow,
+                    contentDescription = null, // Provide a proper content description
+                    modifier = Modifier.size(45.dp)
+                )
+            }
             // Next Icon
-            Icon(
-                imageVector = Icons.Default.KeyboardArrowRight,
-                contentDescription = null, // Provide a proper content description
-                modifier = Modifier.clickable { }
-            )
+            IconButton(onClick = onNextClick) {
+                Icon(
+                    imageVector = Icons.Default.KeyboardArrowRight,
+                    contentDescription = null, // Provide a proper content description
+                    modifier = Modifier.size(45.dp)
+                )
+            }
         }
     }
 }
@@ -154,7 +165,8 @@ fun FullScreenContent(
             IconButton(onClick = onPreviousClick) {
                 Icon(
                     Icons.Default.KeyboardArrowLeft,
-                    contentDescription = "Previous"
+                    contentDescription = "Previous",
+                    modifier = Modifier.size(45.dp)
                 )
             }
 
@@ -162,7 +174,8 @@ fun FullScreenContent(
             IconButton(onClick = onPlayPauseClick) {
                 Icon(
                     Icons.Default.PlayArrow,
-                    contentDescription = "Play/Pause"
+                    contentDescription = "Play/Pause",
+                    modifier = Modifier.size(45.dp)
                 )
             }
 
@@ -170,7 +183,8 @@ fun FullScreenContent(
             IconButton(onClick = onNextClick) {
                 Icon(
                     Icons.Default.KeyboardArrowRight,
-                    contentDescription = "Next"
+                    contentDescription = "Next",
+                    modifier = Modifier.size(45.dp)
                 )
             }
         }
