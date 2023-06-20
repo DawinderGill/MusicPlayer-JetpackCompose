@@ -23,6 +23,10 @@ import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -146,11 +150,17 @@ fun FullScreenContent(
                 .padding(16.dp)
         )
 
-        // Progress bar
-        // Replace this with your custom progress bar implementation
+        var currentMediaProgress = playbackState.currentPlaybackPosition.toFloat()
+        var currentPosTemp by remember { mutableStateOf(0f) }
+
         Slider(
-            value = playbackState.currentPlaybackPosition.toFloat(),
-            onValueChange = { playerEvents.onSeekBarPositionChanged(it.toLong()) },
+            value = if (currentPosTemp == 0f) currentMediaProgress else currentPosTemp,
+            onValueChange = { currentPosTemp = it },
+            onValueChangeFinished = {
+                currentMediaProgress = currentPosTemp
+                currentPosTemp = 0f
+                playerEvents.onSeekBarPositionChanged(currentMediaProgress.toLong())
+            },
             valueRange = 0f..playbackState.currentTrackDuration.toFloat(),
             modifier = Modifier
                 .fillMaxWidth()

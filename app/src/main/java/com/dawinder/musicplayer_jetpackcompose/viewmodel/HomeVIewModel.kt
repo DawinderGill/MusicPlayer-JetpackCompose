@@ -22,6 +22,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -88,7 +89,9 @@ class HomeViewModel @Inject constructor(
     }
 
     fun onSeekBarPositionChanged(position: Long) {
-        myPlayer.seekToPosition(position)
+        viewModelScope.launch {
+            myPlayer.seekToPosition(position)
+        }
     }
 
     private fun observePlayerState() {
