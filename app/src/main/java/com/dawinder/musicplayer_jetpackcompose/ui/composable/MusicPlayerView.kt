@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalMaterialApi::class)
-
 package com.dawinder.musicplayer_jetpackcompose.ui.composable
 
 import androidx.compose.foundation.background
@@ -13,51 +11,52 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.ThumbUp
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.dawinder.musicplayer_jetpackcompose.R
-import com.dawinder.musicplayer_jetpackcompose.model.Song
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.dawinder.musicplayer_jetpackcompose.player.PlaybackState
+import com.dawinder.musicplayer_jetpackcompose.model.Track
 import com.dawinder.musicplayer_jetpackcompose.ui.theme.typography
+import com.dawinder.musicplayer_jetpackcompose.player.PlayerEvents
+import com.dawinder.musicplayer_jetpackcompose.viewmodel.HomeViewModel
 import com.example.compose.md_theme_light_primaryContainer
+import com.dawinder.musicplayer_jetpackcompose.player.PlayerStates.*
 
 @Composable
 fun BottomScreenContent(
-    selectedSong: Song, onItemClick: () -> Unit,
-    onPreviousClick: () -> Unit,
-    onPlayPauseClick: () -> Unit,
-    onNextClick: () -> Unit
+    selectedTrack: Track, onBottomTabClick: () -> Unit, playerEvents: PlayerEvents
 ) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable(onClick = onItemClick)
+            .clickable(onClick = onBottomTabClick)
             .padding(16.dp)
     ) {
         Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth()
+            verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()
         ) {
             Box(
                 modifier = Modifier
                     .size(64.dp)
                     .clip(RoundedCornerShape(8.dp))
                     .background(md_theme_light_primaryContainer)
-            )
-            /*Image(
+            )/*Image(
                 painter = painterResource(id = selectedSong.songImage),
                 contentDescription = null, // Provide a proper content description
                 modifier = Modifier
@@ -65,7 +64,7 @@ fun BottomScreenContent(
                     .clip(RoundedCornerShape(8.dp))
             )*/
             Text(
-                text = selectedSong.songName,
+                text = selectedTrack.trackName,
                 style = typography.bodyLarge,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
@@ -74,7 +73,7 @@ fun BottomScreenContent(
                     .weight(1f)
             )
             // Previous Icon
-            IconButton(onClick = onPreviousClick) {
+            IconButton(onClick = playerEvents::onPreviousClick) {
                 Icon(
                     imageVector = Icons.Default.KeyboardArrowLeft,
                     contentDescription = null, // Provide a proper content description
@@ -82,15 +81,19 @@ fun BottomScreenContent(
                 )
             }
             // Play/Pause Icon
-            IconButton(onClick = onPlayPauseClick) {
-                Icon(
-                    imageVector = Icons.Default.PlayArrow,
-                    contentDescription = null, // Provide a proper content description
-                    modifier = Modifier.size(45.dp)
-                )
+            if (selectedTrack.state == STATE_BUFFERING) {
+                CircularProgressIndicator()
+            } else {
+                IconButton(onClick = playerEvents::onPlayPauseClick) {
+                    Icon(
+                        imageVector = if (selectedTrack.state == STATE_PLAYING) Icons.Default.ThumbUp else Icons.Default.PlayArrow,
+                        contentDescription = null, // Provide a proper content description
+                        modifier = Modifier.size(45.dp)
+                    )
+                }
             }
             // Next Icon
-            IconButton(onClick = onNextClick) {
+            IconButton(onClick = playerEvents::onNextClick) {
                 Icon(
                     imageVector = Icons.Default.KeyboardArrowRight,
                     contentDescription = null, // Provide a proper content description
@@ -103,11 +106,11 @@ fun BottomScreenContent(
 
 @Composable
 fun FullScreenContent(
-    song: Song?,
-    onPlayPauseClick: () -> Unit,
-    onPreviousClick: () -> Unit,
-    onNextClick: () -> Unit
+    selectedTrack: Track?, playerEvents: PlayerEvents
 ) {
+    val viewModel: HomeViewModel = viewModel()
+    val playbackState =
+        viewModel.playbackState.collectAsState(initial = PlaybackState(0L, 0L)).value
     Column(modifier = Modifier.fillMaxWidth()) {
         // Big image at the top
         Box(
@@ -116,8 +119,7 @@ fun FullScreenContent(
                 .height(300.dp)
                 .clip(RoundedCornerShape(8.dp))
                 .background(md_theme_light_primaryContainer)
-        )
-        /*Image(
+        )/*Image(
             painter = painterResource(song.songImage),
             contentDescription = null, // Provide a proper content description
             modifier = Modifier
@@ -126,9 +128,9 @@ fun FullScreenContent(
                 .background(Color.Black) // Placeholder background color
         )*/
 
-        // Song name
+        // Track name
         Text(
-            text = song?.songName!!,
+            text = selectedTrack?.trackName!!,
             style = typography.titleLarge,
             modifier = Modifier
                 .fillMaxWidth()
@@ -137,7 +139,7 @@ fun FullScreenContent(
 
         // Artist name
         Text(
-            text = song.singerName,
+            text = selectedTrack.artistName,
             style = typography.bodyLarge,
             modifier = Modifier
                 .fillMaxWidth()
@@ -146,12 +148,24 @@ fun FullScreenContent(
 
         // Progress bar
         // Replace this with your custom progress bar implementation
-        LinearProgressIndicator(
-            progress = 0.5f, // Example value, replace with actual progress
+        Slider(
+            value = playbackState.currentPlaybackPosition.toFloat(),
+            onValueChange = { playerEvents.onSeekBarPositionChanged(it.toLong()) },
+            valueRange = 0f..playbackState.currentTrackDuration.toFloat(),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp)
         )
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(text = formatTime(timeInMillis = playbackState.currentPlaybackPosition))
+            Text(text = formatTime(timeInMillis = playbackState.currentTrackDuration))
+        }
 
         // Row with play/pause, previous, and next buttons
         Row(
@@ -162,7 +176,7 @@ fun FullScreenContent(
             verticalAlignment = Alignment.CenterVertically
         ) {
             // Previous button
-            IconButton(onClick = onPreviousClick) {
+            IconButton(onClick = playerEvents::onPreviousClick) {
                 Icon(
                     Icons.Default.KeyboardArrowLeft,
                     contentDescription = "Previous",
@@ -170,17 +184,20 @@ fun FullScreenContent(
                 )
             }
 
-            // Play/Pause button
-            IconButton(onClick = onPlayPauseClick) {
-                Icon(
-                    Icons.Default.PlayArrow,
-                    contentDescription = "Play/Pause",
-                    modifier = Modifier.size(45.dp)
-                )
+            if (selectedTrack.state == STATE_BUFFERING) {
+                CircularProgressIndicator()
+            } else {
+                IconButton(onClick = playerEvents::onPlayPauseClick) {
+                    Icon(
+                        imageVector = if (selectedTrack.state == STATE_PLAYING) Icons.Default.ThumbUp else Icons.Default.PlayArrow,
+                        contentDescription = "Play/Pause",
+                        modifier = Modifier.size(45.dp)
+                    )
+                }
             }
 
             // Next button
-            IconButton(onClick = onNextClick) {
+            IconButton(onClick = playerEvents::onNextClick) {
                 Icon(
                     Icons.Default.KeyboardArrowRight,
                     contentDescription = "Next",
@@ -191,12 +208,18 @@ fun FullScreenContent(
     }
 }
 
+@Composable
+fun formatTime(timeInMillis: Long): String {
+    val totalSeconds = timeInMillis / 1000
+    val minutes = totalSeconds / 60
+    val remainingSeconds = totalSeconds % 60
+    return String.format("%02d:%02d", minutes, remainingSeconds)
+}
 
 @Preview
 @Composable
-fun TestPreview() {
-    val s = Song.Builder().songName("Song 1 Test Song Test TextView").songUrl("")
+fun TestPreview() {/*val s = Song.Builder().songName("Song 1 Test Song Test TextView").songUrl("")
         .songImage(R.mipmap.ic_launcher)
-        .singerName("Artist 1").build()
+        .singerName("Artist 1").build()*/
     //BottomSheetContent(s)
 }

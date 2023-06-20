@@ -31,13 +31,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.dawinder.musicplayer_jetpackcompose.model.Song
-import com.dawinder.musicplayer_jetpackcompose.repository.SongRepositoryImpl
+import com.dawinder.musicplayer_jetpackcompose.model.Track
 import com.dawinder.musicplayer_jetpackcompose.ui.theme.typography
+import com.dawinder.musicplayer_jetpackcompose.player.PlayerEvents
 import com.dawinder.musicplayer_jetpackcompose.viewmodel.HomeViewModel
 import com.example.compose.md_theme_light_primaryContainer
 import kotlinx.coroutines.launch
+import com.dawinder.musicplayer_jetpackcompose.player.PlayerStates.*
 
 //viewModel: HomeViewModel = viewModel()
 //viewModel: HomeViewModel = HomeViewModel(SongRepositoryImpl())
@@ -48,78 +48,77 @@ fun HomeScreen(viewModel: HomeViewModel) {
         initialValue = ModalBottomSheetValue.Hidden, skipHalfExpanded = true
     )
     val scope = rememberCoroutineScope()
+    val onBottomTabClick: () -> Unit = { scope.launch { fullScreenState.show() } }
 
-    SongList(songs = viewModel.songs,
+    val playerEvents = object : PlayerEvents {
+        override fun onTrackClick(track: Track) {
+            viewModel.onTrackSelected(track, false)
+            bottomTabExpanded = true
+        }
+
+        override fun onPlayPauseClick() {
+            viewModel.onPlayPauseClick()
+        }
+
+        override fun onPreviousClick() {
+            viewModel.onPreviousClick(false)
+        }
+
+        override fun onNextClick() {
+            viewModel.onNextClick(false)
+        }
+
+        override fun onSeekBarPositionChanged(position: Long) {
+            viewModel.onSeekBarPositionChanged(position)
+        }
+    }
+
+    TrackList(
+        tracks = viewModel.tracks,
         bottomTabExpanded = bottomTabExpanded,
         fullScreenState = fullScreenState,
-        selectedSong = viewModel.selectedSong.value,
-        onSongClick = { item ->
-            scope.launch {
-                viewModel.onSongSelected(item)
-                bottomTabExpanded = true
-            }
-        },
-        onBottomTabClick = {
-            scope.launch {
-                fullScreenState.show()
-            }
-        },
-        onPlayPauseClick = {
-            scope.launch {
-                viewModel.onPlayPauseClick()
-            }
-        },
-        onPreviousClick = {
-            scope.launch {
-                viewModel.onPreviousClick()
-            }
-        },
-        onNextClick = {
-            scope.launch {
-                viewModel.onNextClick()
-            }
-        })
+        selectedTrack = viewModel.selectedTrack,
+        onBottomTabClick = onBottomTabClick,
+        playerEvents = playerEvents
+    )
 }
 
 @Composable
-fun SongList(
-    songs: List<Song>,
+fun TrackList(
+    tracks: List<Track>,
     bottomTabExpanded: Boolean,
     fullScreenState: ModalBottomSheetState,
-    selectedSong: Song?,
-    onSongClick: (Song) -> Unit,
+    selectedTrack: Track?,
     onBottomTabClick: () -> Unit,
-    onPlayPauseClick: () -> Unit,
-    onPreviousClick: () -> Unit,
-    onNextClick: () -> Unit
+    playerEvents: PlayerEvents
 ) {
+    // Wrap the layout with a ModalBottomSheetLayout to allow full screen expansion
     ModalBottomSheetLayout(
         sheetContent = {
-            if (selectedSong != null) {
+            if (selectedTrack != null) {
                 FullScreenContent(
-                    selectedSong,
-                    onPlayPauseClick = onPlayPauseClick,
-                    onPreviousClick = onPreviousClick,
-                    onNextClick = onNextClick
+                    selectedTrack = selectedTrack,
+                    playerEvents = playerEvents
                 )
             }
         }, sheetState = fullScreenState
     ) {
+        // Main content
         Column {
+            // Display the list of tracks
             LazyColumn(
                 modifier = Modifier.weight(1f), contentPadding = PaddingValues(vertical = 8.dp)
             ) {
-                items(songs) {
-                    SongListItem(song = it, onSongClick = { onSongClick(it) })
+                items(tracks) {
+                    TrackListItem(track = it, onTrackClick = { playerEvents.onTrackClick(it) })
                 }
             }
-            if (selectedSong != null && bottomTabExpanded) {
+            // Display the bottom screen content when a track is selected and bottom tab is expanded
+            if (selectedTrack != null && bottomTabExpanded) {
                 BottomScreenContent(
-                    selectedSong = selectedSong,
-                    onItemClick = onBottomTabClick,
-                    onPlayPauseClick = onPlayPauseClick,
-                    onPreviousClick = onPreviousClick,
-                    onNextClick = onNextClick
+                    selectedTrack = selectedTrack,
+                    onBottomTabClick = onBottomTabClick,
+                    playerEvents = playerEvents
                 )
             }
         }
@@ -127,12 +126,12 @@ fun SongList(
 }
 
 @Composable
-fun SongListItem(song: Song, onSongClick: () -> Unit) {
+fun TrackListItem(track: Track, onTrackClick: () -> Unit) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .padding(vertical = 8.dp)
-            .clickable(onClick = onSongClick)
+            .clickable(onClick = onTrackClick)
     ) {
         Box(
             modifier = Modifier
@@ -152,14 +151,17 @@ fun SongListItem(song: Song, onSongClick: () -> Unit) {
                 .weight(1f)
         ) {
             Text(
-                text = song.songName, style = typography.bodyLarge, fontWeight = FontWeight.Bold
+                text = track.trackName, style = typography.bodyLarge, fontWeight = FontWeight.Bold
             )
             Text(
-                text = song.singerName, style = typography.bodyLarge, fontStyle = FontStyle.Italic
+                text = track.artistName, style = typography.bodyLarge, fontStyle = FontStyle.Italic
             )
         }
-        if (song.isPlaying) {
-            Text(text = "Playing")
+        if (track.isSelected) {
+            Text(text = "-S-")
+        }
+        if (track.state == STATE_PLAYING) {
+            Text(text = "-P-")
         }
     }
 }
