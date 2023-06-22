@@ -1,4 +1,4 @@
-package com.dawinder.musicplayer_jetpackcompose.viewmodel
+package com.dawinder.musicplayer_jetpackcompose.viewmodels
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
@@ -6,9 +6,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dawinder.musicplayer_jetpackcompose.model.Track
+import com.dawinder.musicplayer_jetpackcompose.models.Track
 import com.dawinder.musicplayer_jetpackcompose.player.MyPlayer
 import com.dawinder.musicplayer_jetpackcompose.player.PlaybackState
+import com.dawinder.musicplayer_jetpackcompose.player.PlayerEvents
 import com.dawinder.musicplayer_jetpackcompose.player.PlayerStates
 import com.dawinder.musicplayer_jetpackcompose.player.PlayerStates.STATE_END
 import com.dawinder.musicplayer_jetpackcompose.player.PlayerStates.STATE_NEXT_TRACK
@@ -28,7 +29,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     trackRepository: TrackRepository, private val myPlayer: MyPlayer
-) : ViewModel() {
+) : ViewModel(), PlayerEvents {
     private val _tracks = mutableStateListOf<Track>()
     val tracks: List<Track> get() = _tracks
 
@@ -42,68 +43,68 @@ class HomeViewModel @Inject constructor(
     private val _playbackState = MutableStateFlow(PlaybackState(0L, 0L))
     val playbackState: StateFlow<PlaybackState> get() = _playbackState
 
+    private var isAuto: Boolean = false
+
     init {
         _tracks.addAll(trackRepository.getTrackList())
         myPlayer.iniPlayer(tracks.toMediaItemList())
         observePlayerState()
     }
 
-    fun onTrackSelected(item: Track, isAuto: Boolean) {
-        if (selectedTrack == null) isTrackPlay = true
-        if (selectedTrack == null || selectedTrack != item) {
+    fun onTrackSelected(index: Int) {
+        if (selectedTrackIndex == -1) isTrackPlay = true
+        if (selectedTrackIndex == -1 || selectedTrackIndex != index) {
             _tracks.resetTracks()
-            selectedTrackIndex = tracks.indexOf(item)
-            selectedTrack = tracks[selectedTrackIndex].apply { isSelected = true }
-            //setup player
-            if (!isAuto) myPlayer.setUpTrack(selectedTrackIndex, isTrackPlay)
+            selectedTrackIndex = index
+            setUpTrack()
         }
     }
 
-    fun onPreviousClick(isAuto: Boolean) {
-        if (selectedTrackIndex > 0) onTrackSelected(tracks[selectedTrackIndex - 1], isAuto)
-    }
-
-    fun onNextClick(isAuto: Boolean) {
-        if (selectedTrackIndex < tracks.size - 1) onTrackSelected(
-            tracks[selectedTrackIndex + 1],
-            isAuto
-        )
-    }
-
-    fun onPlayPauseClick() {
-        myPlayer.playPause()
+    private fun setUpTrack() {
+        if (!isAuto) myPlayer.setUpTrack(selectedTrackIndex, isTrackPlay)
+        isAuto = false
     }
 
     private fun updateState(state: PlayerStates) {
-        if (selectedTrack != null) {
+        if (selectedTrackIndex != -1) {
             isTrackPlay = state == STATE_PLAYING
             _tracks[selectedTrackIndex].state = state
+            _tracks[selectedTrackIndex].isSelected = true
             selectedTrack = null
             selectedTrack = tracks[selectedTrackIndex]
-        }
-        updatePlaybackState(state)
-        if (state == STATE_NEXT_TRACK)
-            onNextClick(true)
-        if (state == STATE_END)
-            onTrackSelected(tracks[0], false)
-    }
 
-    fun onSeekBarPositionChanged(position: Long) {
-        viewModelScope.launch {
-            myPlayer.seekToPosition(position)
+            updatePlaybackState(state)
+            if (state == STATE_NEXT_TRACK) {
+                isAuto = true
+                onNextClick()
+            }
+            if (state == STATE_END) onTrackSelected(0)
         }
     }
 
     private fun observePlayerState() {
-        viewModelScope.collectPlayerState(
-            myPlayer,
-            ::updateState
-        )
+        viewModelScope.collectPlayerState(myPlayer, ::updateState)
     }
 
     private fun updatePlaybackState(state: PlayerStates) {
         playbackStateJob?.cancel()
         playbackStateJob = viewModelScope.launchPlaybackStateJob(_playbackState, state, myPlayer)
+    }
+
+    override fun onPreviousClick() {
+        if (selectedTrackIndex > 0) onTrackSelected(selectedTrackIndex - 1)
+    }
+
+    override fun onNextClick() {
+        if (selectedTrackIndex < tracks.size - 1) onTrackSelected(selectedTrackIndex + 1)
+    }
+
+    override fun onPlayPauseClick() {
+        myPlayer.playPause()
+    }
+
+    override fun onSeekBarPositionChanged(position: Long) {
+        viewModelScope.launch { myPlayer.seekToPosition(position) }
     }
 
     override fun onCleared() {

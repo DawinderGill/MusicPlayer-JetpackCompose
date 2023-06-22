@@ -9,9 +9,9 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.dawinder.musicplayer_jetpackcompose.ui.composable.HomeScreen
+import com.dawinder.musicplayer_jetpackcompose.ui.composable.HomeScreenParent
 import com.dawinder.musicplayer_jetpackcompose.ui.theme.MusicPlayerJetpackComposeTheme
-import com.dawinder.musicplayer_jetpackcompose.viewmodel.HomeViewModel
+import com.dawinder.musicplayer_jetpackcompose.viewmodels.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             MusicPlayerJetpackComposeTheme {
                 Surface(modifier = Modifier.fillMaxSize()) {
-                    HomeScreen(viewModel)
+                    HomeScreenParent(viewModel)
                 }
             }
         }

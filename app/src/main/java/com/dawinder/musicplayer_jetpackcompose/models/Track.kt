@@ -1,4 +1,4 @@
-package com.dawinder.musicplayer_jetpackcompose.model
+package com.dawinder.musicplayer_jetpackcompose.models
 
 import com.dawinder.musicplayer_jetpackcompose.BuildConfig
 import com.dawinder.musicplayer_jetpackcompose.player.PlayerStates

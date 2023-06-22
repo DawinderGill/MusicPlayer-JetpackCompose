@@ -1,7 +1,7 @@
 package com.dawinder.musicplayer_jetpackcompose.utils
 
 import androidx.media3.common.MediaItem
-import com.dawinder.musicplayer_jetpackcompose.model.Track
+import com.dawinder.musicplayer_jetpackcompose.models.Track
 import com.dawinder.musicplayer_jetpackcompose.player.MyPlayer
 import com.dawinder.musicplayer_jetpackcompose.player.PlaybackState
 import com.dawinder.musicplayer_jetpackcompose.player.PlayerStates
@@ -48,5 +48,12 @@ fun CoroutineScope.launchPlaybackStateJob(
         )
         delay(1000) // delay for 1 second
     } while (state == STATE_PLAYING && isActive)
+}
+
+fun Long.formatTime(): String {
+    val totalSeconds = this / 1000
+    val minutes = totalSeconds / 60
+    val remainingSeconds = totalSeconds % 60
+    return String.format("%02d:%02d", minutes, remainingSeconds)
 }
 

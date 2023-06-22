@@ -1,7 +1,7 @@
 package com.dawinder.musicplayer_jetpackcompose.repositories
 
 import com.dawinder.musicplayer_jetpackcompose.R
-import com.dawinder.musicplayer_jetpackcompose.model.Track
+import com.dawinder.musicplayer_jetpackcompose.models.Track
 import javax.inject.Inject
 
 
