@@ -52,7 +52,7 @@ fun TrackName(trackName: String, modifier: Modifier) {
 fun PreviousIcon(onClick: () -> Unit, isBottomTab: Boolean) {
     IconButton(onClick = onClick) {
         Icon(
-            painter = painterResource(id = R.drawable.icon_previous),
+            painter = painterResource(id = R.drawable.ic_previous),
             contentDescription = stringResource(id = R.string.icon_skip_previous),
             tint = if (isBottomTab) md_theme_light_onPrimary else md_theme_light_onPrimaryContainer,
             modifier = Modifier.size(48.dp)
@@ -73,8 +73,8 @@ fun PlayPauseIcon(selectedTrack: Track, onClick: () -> Unit, isBottomTab: Boolea
         IconButton(onClick = onClick) {
             Icon(
                 painter = painterResource(
-                    id = if (selectedTrack.state == PlayerStates.STATE_PLAYING) R.drawable.icon_pause
-                    else R.drawable.icon_play
+                    id = if (selectedTrack.state == PlayerStates.STATE_PLAYING) R.drawable.ic_pause
+                    else R.drawable.ic_play
                 ),
                 contentDescription = stringResource(id = R.string.icon_play_pause),
                 tint = if (isBottomTab) md_theme_light_onPrimary else md_theme_light_onPrimaryContainer,
@@ -88,7 +88,7 @@ fun PlayPauseIcon(selectedTrack: Track, onClick: () -> Unit, isBottomTab: Boolea
 fun NextIcon(onClick: () -> Unit, isBottomTab: Boolean) {
     IconButton(onClick = onClick) {
         Icon(
-            painter = painterResource(id = R.drawable.icon_next),
+            painter = painterResource(id = R.drawable.ic_next),
             contentDescription = stringResource(id = R.string.icon_skip_next),
             tint = if (isBottomTab) md_theme_light_onPrimary else md_theme_light_onPrimaryContainer,
             modifier = Modifier.size(48.dp)

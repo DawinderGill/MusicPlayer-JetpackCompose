@@ -1,4 +1,5 @@
 package com.dawinder.musicplayer_jetpackcompose.ui.theme
+
 import androidx.compose.ui.graphics.Color
 
 val md_theme_light_primary = Color(0xFF00b59a)
@@ -27,7 +28,6 @@ val md_theme_light_outline = Color(0xFF6F7975)
 val md_theme_light_inverseOnSurface = Color(0xFFEFF1EF)
 val md_theme_light_inverseSurface = Color(0xFF2E3130)
 val md_theme_light_inversePrimary = Color(0xFF00DFBF)
-val md_theme_light_shadow = Color(0xFF000000)
 val md_theme_light_surfaceTint = Color(0xFF006B5A)
 val md_theme_light_outlineVariant = Color(0xFFBFC9C4)
 val md_theme_light_scrim = Color(0xFF000000)
@@ -58,7 +58,6 @@ val md_theme_dark_outline = Color(0xFF89938F)
 val md_theme_dark_inverseOnSurface = Color(0xFF191C1B)
 val md_theme_dark_inverseSurface = Color(0xFFE0E3E0)
 val md_theme_dark_inversePrimary = Color(0xFF006B5A)
-val md_theme_dark_shadow = Color(0xFF000000)
 val md_theme_dark_surfaceTint = Color(0xFF00DFBF)
 val md_theme_dark_outlineVariant = Color(0xFF3F4946)
 val md_theme_dark_scrim = Color(0xFF000000)
