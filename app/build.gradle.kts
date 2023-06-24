@@ -88,12 +88,10 @@ dependencies {
 
     implementation("com.google.dagger:hilt-android:2.46")
     kapt("com.google.dagger:hilt-android-compiler:2.44")
-    /*implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03'
-    kapt 'androidx.hilt:hilt-compiler:1.0.0'*/
 
     implementation("androidx.media3:media3-exoplayer:1.0.2")
-    implementation("androidx.media3:media3-exoplayer-dash:1.0.2")
-    implementation("androidx.media3:media3-ui:1.0.2")
+
+    implementation("com.github.bumptech.glide:compose:1.0.0-alpha.1")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

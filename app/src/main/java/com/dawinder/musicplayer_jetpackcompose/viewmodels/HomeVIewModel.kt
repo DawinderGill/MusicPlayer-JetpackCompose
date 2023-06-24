@@ -103,6 +103,10 @@ class HomeViewModel @Inject constructor(
         myPlayer.playPause()
     }
 
+    override fun onTrackClick(track: Track) {
+        onTrackSelected(tracks.indexOf(track))
+    }
+
     override fun onSeekBarPositionChanged(position: Long) {
         viewModelScope.launch { myPlayer.seekToPosition(position) }
     }

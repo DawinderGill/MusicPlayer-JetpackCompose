@@ -5,7 +5,8 @@ import com.dawinder.musicplayer_jetpackcompose.models.Track
 import com.dawinder.musicplayer_jetpackcompose.player.MyPlayer
 import com.dawinder.musicplayer_jetpackcompose.player.PlaybackState
 import com.dawinder.musicplayer_jetpackcompose.player.PlayerStates
-import com.dawinder.musicplayer_jetpackcompose.player.PlayerStates.*
+import com.dawinder.musicplayer_jetpackcompose.player.PlayerStates.STATE_IDLE
+import com.dawinder.musicplayer_jetpackcompose.player.PlayerStates.STATE_PLAYING
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -24,8 +25,7 @@ fun List<Track>.toMediaItemList(): MutableList<MediaItem> {
 }
 
 fun CoroutineScope.collectPlayerState(
-    myPlayer: MyPlayer,
-    updateState: (PlayerStates) -> Unit
+    myPlayer: MyPlayer, updateState: (PlayerStates) -> Unit
 ) {
     this.launch {
         myPlayer.playerState.collect {
@@ -35,9 +35,7 @@ fun CoroutineScope.collectPlayerState(
 }
 
 fun CoroutineScope.launchPlaybackStateJob(
-    playbackStateFlow: MutableStateFlow<PlaybackState>,
-    state: PlayerStates,
-    myPlayer: MyPlayer
+    playbackStateFlow: MutableStateFlow<PlaybackState>, state: PlayerStates, myPlayer: MyPlayer
 ) = launch {
     do {
         playbackStateFlow.emit(
