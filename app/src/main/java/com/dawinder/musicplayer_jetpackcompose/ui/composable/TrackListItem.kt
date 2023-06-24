@@ -9,10 +9,15 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.rememberLottieComposition
+import com.dawinder.musicplayer_jetpackcompose.R
 import com.dawinder.musicplayer_jetpackcompose.models.Track
 import com.dawinder.musicplayer_jetpackcompose.player.PlayerStates.STATE_PLAYING
 import com.dawinder.musicplayer_jetpackcompose.ui.theme.md_theme_light_onPrimary
@@ -44,8 +49,16 @@ fun TrackListItem(track: Track, onTrackClick: () -> Unit) {
             Text(text = track.trackName, style = typography.bodyLarge, color = textColor)
             Text(text = track.artistName, style = typography.bodySmall, color = textColor)
         }
-        if (track.state == STATE_PLAYING) {
-            Text(text = "-P-")
-        }
+        if (track.state == STATE_PLAYING) LottieAudioWave()
     }
+}
+
+@Composable
+fun LottieAudioWave() {
+    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.audio_wave))
+    LottieAnimation(
+        composition = composition,
+        iterations = Int.MAX_VALUE,
+        modifier = Modifier.size(size = 64.dp)
+    )
 }
