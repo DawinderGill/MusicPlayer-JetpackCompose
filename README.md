@@ -1,8 +1,8 @@
 [![CodeStyle](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg?style=for-the-badge)](https://ktlint.github.io/)
 [![Compose](https://img.shields.io/badge/compose-1.4.3-red.svg?style=for-the-badge)](https://developer.android.com/jetpack/compose)
 [![Kotlin](https://img.shields.io/badge/kotlin-1.8.10-blueviolet.svg?style=for-the-badge)](https://kotlinlang.org/)
-[![Dagger Hilt](https://img.shields.io/badge/dagger-hilt-2.44-blue.svg?style=for-the-badge)](https://dagger.dev/hilt/)
-[![Android API](https://img.shields.io/badge/api-23%2B-brightgreen.svg?style=for-the-badge)](https://android-arsenal.com/api?level=23)
+[![Dagger Hilt](https://img.shields.io/badge/dagger%20hilt-2.44-blue.svg?style=for-the-badge)](https://dagger.dev/hilt/)
+[![Android API](https://img.shields.io/badge/api-21%2B-brightgreen.svg?style=for-the-badge)](https://android-arsenal.com/api?level=23)
 [![License Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-orange.svg?style=for-the-badge)](https://opensource.org/licenses/Apache-2.0)
 
 <p align="center"> 
@@ -11,9 +11,23 @@
 
 <h1 align="center"> Jetpack Compose Music Player </h1>
 
-banner
+Android Clean Architecture in this sample project that presents modern, approach to [Android](https://www.android.com/) application development using [Kotlin](https://kotlinlang.org/) and latest tech-stack.
 
-A simple music player app built using Android Jetpack Compose. It features a list screen, and upon clicking an item, it starts playing the music, showing options at the bottom of the screen including play/pause, previous, and next. Clicking on the bottom bar opens a ModalBottomSheetLayout with all the track details and progress.
+The goal of the project is to demonstrate best practices, provide a set of guidelines, and present modern Android
+application architecture that is modular, scalable, maintainable and testable. This application may look simple, but it
+has all of these small details that will set the rock-solid foundation of the larger app suitable for bigger teams and
+long application lifecycle management.
+
+A few key concepts and technologies form the cornerstone of this project:
+
+- [__Jetpack Compose__](https://developer.android.com/jetpack/compose): This is the next-generation UI toolkit for Android applications, allowing you to build interfaces through declarative UI patterns, thereby reducing the boilerplate code and helping to bring your app to life more quickly​.
+- [__Recomposition__](https://developer.android.com/jetpack/compose/mental-model): In the context of Jetpack Compose, recomposition is the process by which the Compose framework updates your composable functions when the data they read changes, ensuring your UI is always up-to-date​.
+- [__Managing States__](https://developer.android.com/jetpack/compose/state): This project demonstrates the appropriate handling of states in a composable function in Jetpack Compose. This is crucial for building dynamic and interactive UIs that can respond to changes in data over time​.
+- [__Kotlin DSL and Gradle__](https://docs.gradle.org/current/userguide/kotlin_dsl.html): The Kotlin DSL provides a type-safe and expressive way to model your project using Kotlin. This project uses Kotlin DSL for Gradle, which allows for writing Gradle build scripts in a more expressive and convenient way, leveraging Kotlin's features such as type-safety, null-safety, and IDE support​.
+- [__Centralizing Dependencies__](https://proandroiddev.com/better-dependencies-management-using-buildsrc-kotlin-dsl-eda31cdb81bf): To maintain a clean and manageable build system, this project centralizes its dependencies in a single location, making it easy to manage and update the dependencies across modules​ using ``buildSrc + Kotlin DSL``.
+
+## Environment
+Android Studio verison used : Android Studio Giraffe | 2022.3.1 Beta 
 
 Demo
 
