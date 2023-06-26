@@ -1,14 +1,9 @@
-@file:OptIn(
-    ExperimentalMaterialApi::class,
-    ExperimentalMaterial3Api::class,
-    ExperimentalFoundationApi::class
-)
+@file:OptIn(ExperimentalMaterialApi::class, ExperimentalMaterial3Api::class)
 
 package com.dawinder.musicplayer_jetpackcompose.ui.composable
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInVertically
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues

@@ -1,9 +1,10 @@
 import java.util.*
+import com.dawinder.buildsrc.*
 
 val localProperties = Properties().apply {
-    load(rootProject.file("local.properties").inputStream())
+    load(rootProject.file(Constants.LOCAL_PROPERTIES).inputStream())
 }
-val baseUrl: String = localProperties.getProperty("BASE_URL") ?: ""
+val baseUrl: String = localProperties.getProperty(Constants.BASE_URL) ?: Constants.EMPTY_STRING
 
 plugins {
     id("com.android.application")
@@ -14,35 +15,35 @@ plugins {
 }
 
 android {
-    namespace = "com.dawinder.musicplayer_jetpackcompose"
-    compileSdk = 33
+    namespace = AppConfigs.namespace
+    compileSdk = AppConfigs.compileSdk
 
     buildFeatures {
         buildConfig = true
     }
 
     defaultConfig {
-        applicationId = "com.dawinder.musicplayer_jetpackcompose"
-        minSdk = 21
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = AppConfigs.applicationId
+        minSdk = AppConfigs.minSdk
+        targetSdk = AppConfigs.targetSdk
+        versionCode = AppConfigs.versionCode
+        versionName = AppConfigs.versionName
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = AppConfigs.testInstrumentationRunner
 
         vectorDrawables {
             useSupportLibrary = true
         }
 
-        buildConfigField("String", "BASE_URL", "\"$baseUrl\"")
+        buildConfigField(Constants.BASE_URL_TYPE, Constants.BASE_URL, "\"$baseUrl\"")
     }
 
     buildTypes {
         release {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                getDefaultProguardFile(Constants.PROGUARD_ANDROID_OPTIMIZE),
+                Constants.PROGUARD_RULES
             )
         }
     }
@@ -51,17 +52,17 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = AppConfigs.jvmTarget
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
+        kotlinCompilerExtensionVersion = AppConfigs.kotlinCompilerExtensionVersion
     }
     packaging {
         resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += Constants.EXCLUDES
         }
     }
 }
@@ -69,36 +70,47 @@ android {
 kapt { correctErrorTypes = true }
 
 dependencies {
-    implementation(platform("androidx.compose:compose-bom:2023.03.00"))
-    androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
+    //Compose Platform
+    implementation(platform(Deps.composeBom))
+    androidTestImplementation(Deps.composeBom)
 
-    implementation("androidx.core:core-ktx:1.10.1")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
+    //Core KTX
+    implementation(Deps.coreKtx)
 
-    implementation("androidx.activity:activity-compose:1.7.2")
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-graphics")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.material3:material3")
-    implementation("androidx.compose.material:material:1.4.3")
-    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
-    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.1")
+    //Compose Libraries
+    implementation(Deps.composeUI)
+    implementation(Deps.composeUiGraphics)
+    implementation(Deps.composeUiToolingPreview)
+    implementation(Deps.composeMaterial3)
 
-    implementation("com.google.dagger:hilt-android:2.46")
-    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    implementation(Deps.composeMaterial)
+    implementation(Deps.activityCompose)
+    implementation(Deps.constraintLayoutCompose)
+    implementation(Deps.lifecycRuntimeKtx)
+    implementation(Deps.lifecycleViewModelCompose)
+    implementation(Deps.lifecycleViewModelKtx)
+    implementation(Deps.lifecycleRuntimeCompose)
 
-    implementation("androidx.media3:media3-exoplayer:1.0.2")
+    //Dagger Hilt
+    implementation(Deps.hiltAndroid)
+    kapt(Deps.hiltAndroidCompiler)
 
-    implementation("com.github.bumptech.glide:compose:1.0.0-alpha.1")
+    //Media Exoplayer
+    implementation(Deps.mediaExoPlayer)
 
-    implementation("com.airbnb.android:lottie-compose:6.0.1")
+    //Glide
+    implementation(Deps.glideCompose)
 
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-    debugImplementation("androidx.compose.ui:ui-tooling")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
+    //Lottie
+    implementation(Deps.lottieCompose)
+
+    //Testing
+    testImplementation(Deps.testJUint)
+    androidTestImplementation(Deps.androidTestJUnit)
+    androidTestImplementation(Deps.androidTestExpresso)
+    androidTestImplementation(Deps.testComposeUiTestJUnit4)
+
+    //Debug
+    debugImplementation(Deps.debugComposeUiTooling)
+    debugImplementation(Deps.debugComposeUiTestManifest)
 }
