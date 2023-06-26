@@ -1,3 +1,5 @@
+@file:Suppress("EmptyMethod")
+
 package com.dawinder.musicplayer_jetpackcompose.viewmodels
 
 import androidx.compose.runtime.getValue
@@ -26,6 +28,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@Suppress("EmptyMethod")
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     trackRepository: TrackRepository, private val myPlayer: MyPlayer
@@ -51,7 +54,7 @@ class HomeViewModel @Inject constructor(
         observePlayerState()
     }
 
-    fun onTrackSelected(index: Int) {
+    private fun onTrackSelected(index: Int) {
         if (selectedTrackIndex == -1) isTrackPlay = true
         if (selectedTrackIndex == -1 || selectedTrackIndex != index) {
             _tracks.resetTracks()
@@ -101,6 +104,10 @@ class HomeViewModel @Inject constructor(
 
     override fun onPlayPauseClick() {
         myPlayer.playPause()
+    }
+
+    override fun onTrackClick(track: Track) {
+        onTrackSelected(tracks.indexOf(track))
     }
 
     override fun onSeekBarPositionChanged(position: Long) {

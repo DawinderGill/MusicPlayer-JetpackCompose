@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MusicPlayer-JetpackCompose</string>
+    <string name="app_title">Jetpack Compose Music Player</string>
+    <string name="track_image">Track Image</string>
+    <string name="icon_play_pause">Icon Play/Pause</string>
+    <string name="icon_skip_previous">Icon Skip Previous</string>
+    <string name="icon_skip_next">Icon Skip Next</string>
 </resources>

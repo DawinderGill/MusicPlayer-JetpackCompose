@@ -14,66 +14,8 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
-import com.example.compose.md_theme_dark_background
-import com.example.compose.md_theme_dark_error
-import com.example.compose.md_theme_dark_errorContainer
-import com.example.compose.md_theme_dark_inverseOnSurface
-import com.example.compose.md_theme_dark_inversePrimary
-import com.example.compose.md_theme_dark_inverseSurface
-import com.example.compose.md_theme_dark_onBackground
-import com.example.compose.md_theme_dark_onError
-import com.example.compose.md_theme_dark_onErrorContainer
-import com.example.compose.md_theme_dark_onPrimary
-import com.example.compose.md_theme_dark_onPrimaryContainer
-import com.example.compose.md_theme_dark_onSecondary
-import com.example.compose.md_theme_dark_onSecondaryContainer
-import com.example.compose.md_theme_dark_onSurface
-import com.example.compose.md_theme_dark_onSurfaceVariant
-import com.example.compose.md_theme_dark_onTertiary
-import com.example.compose.md_theme_dark_onTertiaryContainer
-import com.example.compose.md_theme_dark_outline
-import com.example.compose.md_theme_dark_outlineVariant
-import com.example.compose.md_theme_dark_primary
-import com.example.compose.md_theme_dark_primaryContainer
-import com.example.compose.md_theme_dark_scrim
-import com.example.compose.md_theme_dark_secondary
-import com.example.compose.md_theme_dark_secondaryContainer
-import com.example.compose.md_theme_dark_surface
-import com.example.compose.md_theme_dark_surfaceTint
-import com.example.compose.md_theme_dark_surfaceVariant
-import com.example.compose.md_theme_dark_tertiary
-import com.example.compose.md_theme_dark_tertiaryContainer
-import com.example.compose.md_theme_light_background
-import com.example.compose.md_theme_light_error
-import com.example.compose.md_theme_light_errorContainer
-import com.example.compose.md_theme_light_inverseOnSurface
-import com.example.compose.md_theme_light_inversePrimary
-import com.example.compose.md_theme_light_inverseSurface
-import com.example.compose.md_theme_light_onBackground
-import com.example.compose.md_theme_light_onError
-import com.example.compose.md_theme_light_onErrorContainer
-import com.example.compose.md_theme_light_onPrimary
-import com.example.compose.md_theme_light_onPrimaryContainer
-import com.example.compose.md_theme_light_onSecondary
-import com.example.compose.md_theme_light_onSecondaryContainer
-import com.example.compose.md_theme_light_onSurface
-import com.example.compose.md_theme_light_onSurfaceVariant
-import com.example.compose.md_theme_light_onTertiary
-import com.example.compose.md_theme_light_onTertiaryContainer
-import com.example.compose.md_theme_light_outline
-import com.example.compose.md_theme_light_outlineVariant
-import com.example.compose.md_theme_light_primary
-import com.example.compose.md_theme_light_primaryContainer
-import com.example.compose.md_theme_light_scrim
-import com.example.compose.md_theme_light_secondary
-import com.example.compose.md_theme_light_secondaryContainer
-import com.example.compose.md_theme_light_surface
-import com.example.compose.md_theme_light_surfaceTint
-import com.example.compose.md_theme_light_surfaceVariant
-import com.example.compose.md_theme_light_tertiary
-import com.example.compose.md_theme_light_tertiaryContainer
 
-private val LightColors = lightColorScheme(
+private val _lightColors = lightColorScheme(
     primary = md_theme_light_primary,
     onPrimary = md_theme_light_onPrimary,
     primaryContainer = md_theme_light_primaryContainer,
@@ -106,7 +48,7 @@ private val LightColors = lightColorScheme(
 )
 
 
-private val DarkColors = darkColorScheme(
+private val _darkColors = darkColorScheme(
     primary = md_theme_dark_primary,
     onPrimary = md_theme_dark_onPrimary,
     primaryContainer = md_theme_dark_primaryContainer,
@@ -151,8 +93,8 @@ fun MusicPlayerJetpackComposeTheme(
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
 
-        darkTheme -> DarkColors
-        else -> LightColors
+        darkTheme -> _darkColors
+        else -> _lightColors
     }
     val view = LocalView.current
     if (!view.isInEditMode) {
