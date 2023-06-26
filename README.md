@@ -50,7 +50,21 @@ A well planned architecture is extremely important for an app to scale and all a
 ### Project Structure
 <p align="center"><img src="screenshots/layers.png" alt="Project Structure" width="500"></p>
 
+### BuildSrc Module
+The ``buildSrc`` layer is responsible for dependency management. It control and manage all dependencies in one place with Kotlin.
 
+### App Module
+This module contails all the application relates classes, divided into different packages based on their responsibilities.
+
+- __di__: This package handles ``Dependency Injection`` in your project. It includes classes like ``AppModule`` and ``DataModule``, which are used to provide instances of your dependencies to the parts of your app that need them. This helps to separate the responsibility of creating and managing dependencies from the classes that use them.
+- __models__: The ``Track class`` in this package is the main model for your tracks. This model encapsulates the data associated with a track and any behavior that directly relates to this data. This maintains a separation of concerns by keeping the data and behavior related to tracks in a dedicated place.
+- __player__: This package includes classes related to the ``music player`` functionality of your app, such as MyPlayer, PlayBackState, PlayerEvents, and PlayerStates. These classes handle all the logic related to playing music, including managing playback state and handling player events. This helps to separate the music playing functionality from other aspects of your app.
+- __repositories__: This package contains the ``TrackRepository`` and ``TrackRepositoryImpl``, which are responsible for providing track data. Repositories act as a sort of "middleman" between your data sources (like a database or network API) and the rest of your app. This helps to separate the responsibility of data management from the classes that use the data.
+- __ui__: This package contains all the user interface code for your app, divided into sub-packages like ``activities, composables, and theme``. This separation of concerns makes it easier to manage your UI code and keeps it separate from your data and business logic.
+- __utils__: This package typically contains ``utility classes and functions`` that provide common functionality needed in various places in your app. By placing these utilities in their own package, you can keep them separate from your main app code and make them easier to find and use.
+- __viewmodels__: The ``HomeViewModel`` in this package controls the states of your composables. In the ``MVVM (Model-View-ViewModel) architecture``, the ViewModel is responsible for preparing and managing the data for the UI and handling user interactions. This helps to separate the UI logic from the business logic and makes your UI easier to test.
+
+By dividing your code into these packages, you're following the ``principle of separation of concerns``. Each part of your code has a specific responsibility, and it's clear where to find and modify the code for each of these responsibilities. This makes your code easier to ``understand, test, and maintain``.
 
 
 
