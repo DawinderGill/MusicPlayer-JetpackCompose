@@ -27,7 +27,7 @@ A few key concepts and technologies form the cornerstone of this project:
 - [__Centralizing Dependencies__](https://proandroiddev.com/better-dependencies-management-using-buildsrc-kotlin-dsl-eda31cdb81bf): To maintain a clean and manageable build system, this project centralizes its dependencies in a single location, making it easy to manage and update the dependencies across modules​ using ``buildSrc + Kotlin DSL``.
 
 ## Music Player Demo 
-https://github.com/DawinderGill/MusicPlayer-JetpackCompose/assets/8597627/b3e6b0f8-6272-4b9a-89b3-c7570f422c2a
+![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbTViZTh5aXIyZTNvczRtNDRzaG16NnE1d3U4YXg5bzB6cm1iZmRkdSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/GcMZIVQGyYLuJpYcDN/giphy.gif)
 
 ## Environment
 Android Studio verison used : ``Android Studio Giraffe | 2022.3.1 Beta``
