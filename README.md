@@ -51,6 +51,11 @@ A well planned architecture is extremely important for an app to scale and all a
 <p align="center"><img src="screenshots/layers.png" alt="Project Structure" width="500"></p>
 <p align="center"><img src="screenshots/app_demo.mp4" alt="Project Structure" width="500"></p>
 
+
+https://github.com/DawinderGill/MusicPlayer-JetpackCompose/assets/8597627/b3e6b0f8-6272-4b9a-89b3-c7570f422c2a
+
+
+
 ### BuildSrc Module
 The ``buildSrc`` layer is responsible for dependency management. It control and manage all dependencies in one place with Kotlin.
 
