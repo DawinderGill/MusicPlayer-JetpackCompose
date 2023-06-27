@@ -77,7 +77,7 @@ This project uses many of the popular libraries, plugins and tools of the androi
 
 - [UI](https://developer.android.com/jetpack/androidx/releases/compose-ui) - Fundamental components of compose UI needed to interact with the device, including layout, drawing, and input.
 
-- [ModalBottomSheetLayout](https://foso.github.io/Jetpack-Compose-Playground/material/modalbottomsheetlayout/) - We can call this BottomSheetDialog of Jetpack Compose.
+- [ModalBottomSheetLayout](https://m3.material.io/components/bottom-sheets/overview) - We can call this BottomSheetDialog of Jetpack Compose.
 
 - [Android KTX](https://developer.android.com/kotlin/ktx.html) - Provide concise, idiomatic Kotlin to Jetpack and Android platform APIs.
 
