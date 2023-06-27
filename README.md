@@ -11,6 +11,10 @@
 
 <h1 align="center"> Jetpack Compose Music Player </h1>
 
+## Music Player Demo 
+<p align="center">https://github.com/DawinderGill/MusicPlayer-JetpackCompose/assets/8597627/b3e6b0f8-6272-4b9a-89b3-c7570f422c2a</p>
+https://github.com/DawinderGill/MusicPlayer-JetpackCompose/assets/8597627/b3e6b0f8-6272-4b9a-89b3-c7570f422c2a
+
 Android Clean Architecture in this sample project that presents modern, approach to [Android](https://www.android.com/) application development using [Kotlin](https://kotlinlang.org/) and latest tech-stack.
 
 The goal of the project is to demonstrate best practices, provide a set of guidelines, and present modern Android
@@ -49,12 +53,6 @@ A well planned architecture is extremely important for an app to scale and all a
 
 ### Project Structure
 <p align="center"><img src="screenshots/layers.png" alt="Project Structure" width="500"></p>
-<p align="center"><img src="screenshots/app_demo.mp4" alt="Project Structure" width="500"></p>
-
-
-https://github.com/DawinderGill/MusicPlayer-JetpackCompose/assets/8597627/b3e6b0f8-6272-4b9a-89b3-c7570f422c2a
-
-
 
 ### BuildSrc Module
 The ``buildSrc`` layer is responsible for dependency management. It control and manage all dependencies in one place with Kotlin.
