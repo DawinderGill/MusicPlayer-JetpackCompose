@@ -37,6 +37,12 @@ import com.dawinder.musicplayer_jetpackcompose.viewmodels.HomeViewModel
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
+/**
+ * A composable function that hosts the home screen of the application.
+ * It manages the state of the bottom sheet and when to show it.
+ *
+ * @param viewModel The ViewModel that is responsible for providing data to the UI and processing user actions.
+ */
 @Composable
 fun HomeScreenParent(viewModel: HomeViewModel) {
     val fullScreenState = rememberModalBottomSheetState(
@@ -55,6 +61,17 @@ fun HomeScreenParent(viewModel: HomeViewModel) {
     )
 }
 
+/**
+ * A composable function that displays a list of tracks and a bottom sheet dialog.
+ * The bottom sheet dialog is shown when a track is selected.
+ *
+ * @param tracks A list of tracks to be displayed.
+ * @param selectedTrack The currently selected track. If null, no track is selected.
+ * @param fullScreenState The state of the bottom sheet dialog.
+ * @param playerEvents The events that the player can trigger.
+ * @param playbackState The state of the media playback.
+ * @param onBottomTabClick A lambda function that is invoked when the bottom tab is clicked.
+ */
 @Composable
 fun TrackList(
     tracks: List<Track>,

@@ -15,6 +15,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
+/**
+ * Light color scheme used for the app's light theme.
+ * Each color property is named according to its use in the UI.
+ */
 private val _lightColors = lightColorScheme(
     primary = md_theme_light_primary,
     onPrimary = md_theme_light_onPrimary,
@@ -47,7 +51,10 @@ private val _lightColors = lightColorScheme(
     scrim = md_theme_light_scrim,
 )
 
-
+/**
+ * Dark color scheme used for the app's dark theme.
+ * Each color property is named according to its use in the UI.
+ */
 private val _darkColors = darkColorScheme(
     primary = md_theme_dark_primary,
     onPrimary = md_theme_dark_onPrimary,
@@ -80,6 +87,14 @@ private val _darkColors = darkColorScheme(
     scrim = md_theme_dark_scrim,
 )
 
+/**
+ * A composable function that wraps the provided content within a Material Theme.
+ * It applies either a light or dark color scheme based on the system settings and Android version.
+ *
+ * @param darkTheme A boolean representing whether the dark theme should be applied. Default is based on the system settings.
+ * @param dynamicColor A boolean representing whether dynamic color should be applied. Dynamic color is available on Android 12+. Default is true.
+ * @param content The content to be drawn within this theme.
+ */
 @Composable
 fun MusicPlayerJetpackComposeTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),

@@ -1,5 +1,38 @@
 package com.dawinder.buildsrc
 
+/**
+ * This object defines the versions for the dependencies used in the project.
+ *
+ * `coreKtx`: The version for the Core Kotlin Extensions library. This library provides Kotlin-friendly functionality for Android APIs.
+ *
+ * `composeBomCommon`: The version for the Compose Bill of Materials (BOM). The BOM is used to ensure that all Compose dependencies are using the same version.
+ *
+ * `lifecycleCommon`: The version for the Android Lifecycle library. This library helps manage lifecycle-aware components in Android.
+ *
+ * `activityCompose`: The version for the Activity Compose library, which brings Jetpack Compose to activities.
+ *
+ * `composeMaterial`: The version for the Compose Material library, which provides Material Design components for use with Jetpack Compose.
+ *
+ * `constraintLayoutCompose`: The version for the ConstraintLayout Compose library, which brings ConstraintLayout functionality to Jetpack Compose.
+ *
+ * `glideCompose`: The version for the Glide Compose library, which is used for image loading in Jetpack Compose.
+ *
+ * `lottieCompose`: The version for the Lottie Compose library, which is used to display Lottie animations in Jetpack Compose.
+ *
+ * `hiltAndroid`: The version for the Hilt Android library, which is used for dependency injection in Android.
+ *
+ * `hiltAndroidCompiler`: The version for the Hilt Android Compiler, which is used during compile time to generate dependency injection code.
+ *
+ * `mediaExoPlayer`: The version for the Media ExoPlayer library, which is used for playing audio and video in Android.
+ *
+ * `testJUnit`: The version for the JUnit testing library for unit tests.
+ *
+ * `androidTestJUnit`: The version for the Android JUnit testing library for instrumented tests.
+ *
+ * `androidTestEspresso`: The version for the Espresso testing library for UI tests.
+ *
+ * `androidTestJUnit4`: The version for the JUnit 4 testing library for Android tests.
+ */
 object Versions {
     const val coreKtx = "1.10.1"
 

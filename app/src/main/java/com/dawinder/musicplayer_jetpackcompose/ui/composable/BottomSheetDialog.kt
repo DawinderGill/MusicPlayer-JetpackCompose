@@ -28,6 +28,14 @@ import com.dawinder.musicplayer_jetpackcompose.ui.theme.typography
 import com.dawinder.musicplayer_jetpackcompose.utils.formatTime
 import kotlinx.coroutines.flow.StateFlow
 
+/**
+ * [BottomSheetDialog] is a composable that represents the bottom sheet dialog which contains information about the selected track,
+ * a slider to monitor and control track progress, and controls for track playback.
+ *
+ * @param selectedTrack The [Track] object that is currently selected for playback.
+ * @param playerEvents The [PlayerEvents] object which encapsulates all the events associated with the player like play, pause, next, previous.
+ * @param playbackState A [StateFlow] object representing the playback state, including current playback position and track duration.
+ */
 @Composable
 fun BottomSheetDialog(
     selectedTrack: Track,
@@ -54,6 +62,13 @@ fun BottomSheetDialog(
     }
 }
 
+/**
+ * [TrackInfo] is a composable that displays the image, name, and artist of a track.
+ *
+ * @param trackImage The resource ID of the track image.
+ * @param trackName The name of the track.
+ * @param artistName The name of the artist.
+ */
 @Composable
 fun TrackInfo(trackImage: Int, trackName: String, artistName: String) {
     Box(
@@ -85,6 +100,12 @@ fun TrackInfo(trackImage: Int, trackName: String, artistName: String) {
     )
 }
 
+/**
+ * [TrackProgressSlider] is a composable that represents a slider for tracking and controlling the progress of the current track.
+ *
+ * @param playbackState A [StateFlow] object representing the playback state, including current playback position and track duration.
+ * @param onSeekBarPositionChanged A lambda which gets executed when the position of the slider is changed.
+ */
 @Composable
 fun TrackProgressSlider(
     playbackState: StateFlow<PlaybackState>,
@@ -126,6 +147,14 @@ fun TrackProgressSlider(
     }
 }
 
+/**
+ * [TrackControls] is a composable that represents the controls for track playback, including previous, play/pause, and next buttons.
+ *
+ * @param selectedTrack The [Track] object that is currently selected for playback.
+ * @param onPreviousClick A lambda which gets executed when the previous button is clicked.
+ * @param onPlayPauseClick A lambda which gets executed when the play/pause button is clicked.
+ * @param onNextClick A lambda which gets executed when the next button is clicked.
+ */
 @Composable
 fun TrackControls(
     selectedTrack: Track,

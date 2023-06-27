@@ -17,6 +17,14 @@ import com.dawinder.musicplayer_jetpackcompose.models.Track
 import com.dawinder.musicplayer_jetpackcompose.player.PlayerEvents
 import com.dawinder.musicplayer_jetpackcompose.ui.theme.md_theme_light_primary
 
+/**
+ * [BottomPlayerTab] is a composable that represents the bottom player tab UI in the application.
+ * This tab displays the currently selected track information and provides controls for playback.
+ *
+ * @param selectedTrack The [Track] object that is currently selected for playback.
+ * @param playerEvents The [PlayerEvents] object which encapsulates all the events associated with the player like play, pause, next, previous.
+ * @param onBottomTabClick A lambda which gets executed when the bottom player tab is clicked.
+ */
 @Composable
 fun BottomPlayerTab(
     selectedTrack: Track, playerEvents: PlayerEvents, onBottomTabClick: () -> Unit

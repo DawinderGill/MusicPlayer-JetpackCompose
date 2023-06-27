@@ -2,6 +2,24 @@ package com.dawinder.musicplayer_jetpackcompose.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
+/**
+ * This file defines the color palette for the Material Design (md) themes of the application in both light and dark modes.
+ *
+ * Each color is defined as a read-only (`val`) variable of the `Color` class in the Compose UI toolkit, with the color specified as an ARGB hex value.
+ *
+ * The color names follow a convention: `md_theme_{theme}_{colorRole}`.
+ *
+ * - `{theme}` can be `light` or `dark`, referring to the light and dark theme of the application respectively.
+ *
+ * - `{colorRole}` describes the role of the color in the Material Design specification.
+ *   Examples include `primary`, `onPrimary`, `secondary`, `onSecondary`, `background`, `onBackground`, etc.
+ *
+ * The `on` color roles (such as `onPrimary`, `onSecondary`, etc.) are colors that guarantee legible text when drawn on top of the respective color.
+ * For instance, `onPrimary` is a color that is clearly visible when drawn on top of the `primary` color.
+ *
+ * Some additional color roles like `surfaceVariant`, `outline`, `inverseOnSurface`, `inverseSurface`, `surfaceTint`, `outlineVariant`, and `scrim` are also defined,
+ * which might be specific to the design needs of this application.
+ */
 val md_theme_light_primary = Color(0xFF00b59a)
 val md_theme_light_onPrimary = Color(0xFFFFFFFF)
 val md_theme_light_primaryContainer = Color(0xFF45FDDA)
@@ -61,5 +79,3 @@ val md_theme_dark_inversePrimary = Color(0xFF006B5A)
 val md_theme_dark_surfaceTint = Color(0xFF00DFBF)
 val md_theme_dark_outlineVariant = Color(0xFF3F4946)
 val md_theme_dark_scrim = Color(0xFF000000)
-
-

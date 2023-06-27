@@ -4,15 +4,30 @@ import com.dawinder.musicplayer_jetpackcompose.R
 import com.dawinder.musicplayer_jetpackcompose.models.Track
 import javax.inject.Inject
 
-
+/**
+ * A concrete implementation of the [TrackRepository] interface.
+ * This class is responsible for managing and providing tracks.
+ *
+ * @constructor Creates an instance of [TrackRepositoryImpl].
+ */
 class TrackRepositoryImpl @Inject constructor() : TrackRepository {
+
+    /**
+     * A list of tracks stored in-memory.
+     */
     private val tracks = mutableListOf<Track>()
 
+    /**
+     * Initializes the tracks repository.
+     */
     init {
         // Initialize songs here or load from a data source
         createTracks()
     }
 
+    /**
+     * Creates a set of tracks and adds them to the repository.
+     */
     private fun createTracks() {
         // Add songs to the repository
         tracks.add(
@@ -88,6 +103,11 @@ class TrackRepositoryImpl @Inject constructor() : TrackRepository {
         )
     }
 
+    /**
+     * Retrieves a list of all tracks in the repository.
+     *
+     * @return a list of [Track] objects.
+     */
     override fun getTrackList(): List<Track> {
         return tracks
     }
