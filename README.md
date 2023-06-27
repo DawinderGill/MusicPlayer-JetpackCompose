@@ -66,43 +66,98 @@ This module contails all the application relates classes, divided into different
 
 By dividing your code into these packages, you're following the ``principle of separation of concerns``. Each part of your code has a specific responsibility, and it's clear where to find and modify the code for each of these responsibilities. This makes your code easier to ``understand, test, and maintain``.
 
+# Tech Stacks
+This project uses many of the popular libraries, plugins and tools of the android ecosystem.
+
+- [Jetpack Compose](https://developer.android.com/jetpack/compose) - Jetpack Compose is Android’s recommended modern toolkit for building native UI. It simplifies and accelerates UI development on Android. Quickly bring your app to life with less code, powerful tools, and intuitive Kotlin APIs.
+
+- [Material3](https://developer.android.com/jetpack/androidx/releases/compose-material3) - Build Jetpack Compose UIs with ready to use Material Design Components.
+
+- [Foundation](https://developer.android.com/jetpack/androidx/releases/compose-foundation) - Write Jetpack Compose applications with ready to use building blocks and extend foundation to build your own design system pieces.
+
+- [UI](https://developer.android.com/jetpack/androidx/releases/compose-ui) - Fundamental components of compose UI needed to interact with the device, including layout, drawing, and input.
+
+- [ModalBottomSheetLayout](https://foso.github.io/Jetpack-Compose-Playground/material/modalbottomsheetlayout/) - We can call this BottomSheetDialog of Jetpack Compose.
+
+- [Android KTX](https://developer.android.com/kotlin/ktx.html) - Provide concise, idiomatic Kotlin to Jetpack and Android platform APIs.
+
+- [AndroidX](https://developer.android.com/jetpack/androidx) - Major improvement to the original Android [Support Library](https://developer.android.com/topic/libraries/support-library/index), which is no longer maintained.
+
+- [Lifecycle](https://developer.android.com/topic/libraries/architecture/lifecycle) - Perform actions in response to a change in the lifecycle status of another component, such as activities and fragments.
+
+- [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Designed to store and manage UI-related data in a lifecycle conscious way. The ViewModel class allows data to survive configuration changes such as screen rotations.
+
+- [Media3 ExoPlayer](https://developer.android.com/guide/topics/media/exoplayer) - A media player is an app-level component that allows playback of video and audio files. Such files can be stored locally or streamed over the Internet. Jetpack Media3 provides a Player interface that defines basic functionality such as the ability to play, pause, seek, and display track information.
+
+- [Compose Lottie](https://github.com/airbnb/lottie/blob/master/android-compose.md) - Lottie is a mobile library for Android and iOS that parses Adobe After Effects animations exported as json with Bodymovin and renders them natively on mobile!
+
+- [Compose Glide](https://bumptech.github.io/glide/int/compose.html) - An image loading library to load images, downsampling, cache without any memory leak.
+    
+- [Dagger Hilt](https://dagger.dev/hilt/) - Hilt is a dependency injection library for Android that reduces the boilerplate of doing manual dependency injection in your project.
+
+- [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) - A coroutine is a concurrency design pattern that you can use on Android to simplify code that executes asynchronously.
+
+- [Flow](https://developer.android.com/kotlin/flow) - Flows are built on top of coroutines and can provide multiple values. A flow is conceptually a stream of data that can be computed asynchronously.
+
+- [Google-KSP](https://github.com/google/ksp/) - Kotlin Symbol Processing (KSP) is an API for building lightweight compiler plugins in Kotlin, enabling powerful tooling capabilities such as custom lint checks, code generation, and more.
+
+- [Gradle Kotlin DSL](https://gradle.org/kotlin/) - It makes it easy to manage dependency all module that we have.
 
 
 
+## How to use
 
-Plugins and Tools
+1. Clone this repository to your machine.
+2. Open Android Studio and import the project.
+3. Navigate to ``local.properties`` file and add the ``BASE_URL`` key with your ``server URL`` for the music files.
+4.  Add your tracks in ``repositories>TrackRepositoryImpl`` under ``createTracks()`` method.
+5.  Build and run the project.
 
-Kotlin Gradle - For managing build scripts
-Kotlin DSL - For managing project and module scripts
-Kotlin KSP - A fast, lightweight compiler plugin API for Kotlin
-Feel free to add more tools and plugins you used in your project here.
 
+## 🤝 Contributing
 
-How to Use
+Contributions are what make the open source community such an amazing place to be learn, inspire,
+and create. Any contributions you make are **greatly appreciated**.
 
-Clone this repository to your machine.
-Open Android Studio and import the project.
-Navigate to local.properties file and add the BASE_URL key with your server URL for the music files.
-Add your tracks in repositories>TrackRepositoryImpl under createTracks() method.
-Build and run the project.
-Contributing
+**Note** : Please note that while this project focuses primarily on the use of ``Jetpack Compose``, it does not currently incorporate the use of ``foreground services`` for playing music in the background. This is an area where contributions would be particularly valuable, as foreground services are recommended for such functionality in Android development.
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated:
+If you would like to contribute, please follow these steps:
 
-Open an issue first to discuss what you would like to change.
-Fork the Project
-Create your feature branch (git checkout -b feature/amazing-feature)
-Commit your changes (git commit -m 'Add some amazing feature')
-Push to the branch (git push origin feature/amazing-feature)
-Open a pull request
+1. Open an issue first to discuss what you would like to change.
+2. Fork the Project
+3. Create your feature branch (`git checkout -b feature/amazing-feature`)
+4. Commit your changes (`git commit -m 'Add some amazing feature'`)
+5. Push to the branch (`git push origin feature/amazing-feature`)
+6. Open a pull request
+
 Please make sure to update tests as appropriate.
 
-Authors
+## ✍️ Author
 
-Your Name or Alias - @YourTwitterHandle - LinkedIn
 
-Add more authors if applicable.
+<img src="https://avatars.githubusercontent.com/u/8597627?v=4" width="70" height="70" align="left">
 
-License
 
-Copyright © 2023 - Your Name
+👤 **DawinderGill**
+
+[![Linkedin](https://img.shields.io/badge/-linkedin-0077B5?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/dawinder-singh-gill-2b1833171)
+
+Feel free to ping me 😉
+
+
+## License
+
+```license
+Copyright © 2023 - DawinderGill
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
