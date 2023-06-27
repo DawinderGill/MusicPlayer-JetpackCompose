@@ -11,10 +11,6 @@
 
 <h1 align="center"> Jetpack Compose Music Player </h1>
 
-## Music Player Demo 
-<p align="center">https://github.com/DawinderGill/MusicPlayer-JetpackCompose/assets/8597627/b3e6b0f8-6272-4b9a-89b3-c7570f422c2a</p>
-https://github.com/DawinderGill/MusicPlayer-JetpackCompose/assets/8597627/b3e6b0f8-6272-4b9a-89b3-c7570f422c2a
-
 Android Clean Architecture in this sample project that presents modern, approach to [Android](https://www.android.com/) application development using [Kotlin](https://kotlinlang.org/) and latest tech-stack.
 
 The goal of the project is to demonstrate best practices, provide a set of guidelines, and present modern Android
@@ -29,6 +25,10 @@ A few key concepts and technologies form the cornerstone of this project:
 - [__Managing States__](https://developer.android.com/jetpack/compose/state): This project demonstrates the appropriate handling of states in a composable function in Jetpack Compose. This is crucial for building dynamic and interactive UIs that can respond to changes in data over time​.
 - [__Kotlin DSL and Gradle__](https://docs.gradle.org/current/userguide/kotlin_dsl.html): The Kotlin DSL provides a type-safe and expressive way to model your project using Kotlin. This project uses Kotlin DSL for Gradle, which allows for writing Gradle build scripts in a more expressive and convenient way, leveraging Kotlin's features such as type-safety, null-safety, and IDE support​.
 - [__Centralizing Dependencies__](https://proandroiddev.com/better-dependencies-management-using-buildsrc-kotlin-dsl-eda31cdb81bf): To maintain a clean and manageable build system, this project centralizes its dependencies in a single location, making it easy to manage and update the dependencies across modules​ using ``buildSrc + Kotlin DSL``.
+
+## Music Player Demo 
+[My Vimeo Video](https://github.com/DawinderGill/MusicPlayer-JetpackCompose/assets/8597627/b3e6b0f8-6272-4b9a-89b3-c7570f422c2a)
+https://github.com/DawinderGill/MusicPlayer-JetpackCompose/assets/8597627/b3e6b0f8-6272-4b9a-89b3-c7570f422c2a
 
 ## Environment
 Android Studio verison used : ``Android Studio Giraffe | 2022.3.1 Beta``
