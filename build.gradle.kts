@@ -12,9 +12,9 @@
  * 5. `org.jetbrains.kotlin.jvm`: The Kotlin JVM plugin. This plugin is used to compile Kotlin sources to Java bytecode, targeting the JVM.
  */
 plugins {
-    id("com.android.application") version "8.1.0-beta03" apply false
-    id("org.jetbrains.kotlin.android") version "1.8.10" apply false
-    id("com.google.devtools.ksp") version "1.8.10-1.0.9" apply false
-    id("com.google.dagger.hilt.android") version "2.44" apply false
-    id("org.jetbrains.kotlin.jvm") version "1.8.10" apply false
+    id(Plugins.pluginAndroidApplication) version Versions.pluginAndroidApplication apply false
+    id(Plugins.pluginKotlinAndroid) version Versions.pluginKotlinAndroid apply false
+    id(Plugins.pluginDevtoolsKSP) version Versions.pluginDevtoolsKSP apply false
+    id(Plugins.pluginHiltAndroid) version Versions.pluginHiltAndroid apply false
+    id(Plugins.pluginKotlinJVM) version Versions.pluginKotlinJVM apply false
 }

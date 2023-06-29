@@ -1,5 +1,3 @@
-package com.dawinder.buildsrc
-
 /**
  * This object defines constants used throughout the project.
  *

@@ -1,5 +1,4 @@
 import java.util.*
-import com.dawinder.buildsrc.*
 
 /**
  * Local properties loaded from the root project file.
@@ -15,11 +14,11 @@ val baseUrl: String = localProperties.getProperty(Constants.BASE_URL) ?: Constan
 
 // Define the plugins for the application
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-    id("com.google.devtools.ksp")
-    kotlin("kapt")
-    id("com.google.dagger.hilt.android")
+    id(Plugins.pluginAndroidApplication)
+    id(Plugins.pluginKotlinAndroid)
+    id(Plugins.pluginDevtoolsKSP)
+    kotlin(Plugins.pluginKapt)
+    id(Plugins.pluginHiltAndroid)
 }
 
 // Define the Android configurations for the application.

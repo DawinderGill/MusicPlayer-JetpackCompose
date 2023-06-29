@@ -1,5 +1,3 @@
-package com.dawinder.buildsrc
-
 /**
  * This object defines the versions for the dependencies used in the project.
  *
@@ -32,6 +30,16 @@ package com.dawinder.buildsrc
  * `androidTestEspresso`: The version for the Espresso testing library for UI tests.
  *
  * `androidTestJUnit4`: The version for the JUnit 4 testing library for Android tests.
+ *
+ * `pluginAndroidApplication`: The version for the Android Application plugin.
+ *
+ * `pluginKotlinAndroid`: The version for the Kotlin Android plugin.
+ *
+ *  `pluginKotlinJVM`: The version for the Kotlin JVM plugin.
+ *
+ *  `pluginDevtoolsKSP`: The version for the Devtools KSP plugin.
+ *
+ *  `pluginHiltAndroid`: The version for the Hilt Android plugin.
  */
 object Versions {
     const val coreKtx = "1.10.1"
@@ -53,4 +61,11 @@ object Versions {
     const val androidTestJUnit = "1.1.5"
     const val androidTestEspresso = "3.5.1"
     const val androidTestJUnit4 = "1.4.3"
+
+    //Plugins
+    const val pluginAndroidApplication = "8.1.0-beta03"
+    const val pluginKotlinAndroid = "1.8.10"
+    const val pluginKotlinJVM = "1.8.10"
+    const val pluginDevtoolsKSP = "1.8.10-1.0.9"
+    const val pluginHiltAndroid = "2.44"
 }

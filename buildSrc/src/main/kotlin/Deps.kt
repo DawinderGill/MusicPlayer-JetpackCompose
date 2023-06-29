@@ -1,11 +1,9 @@
-package com.dawinder.buildsrc
-
 /**
  * This object defines the dependencies used in the project.
  * Each dependency is defined as a lazy property that includes the library's group ID,
  * artifact ID, and version.
  *
- * The versions for the dependencies are defined in the `Versions` object.
+ * The Versions for the dependencies are defined in the `Versions` object.
  */
 object Deps {
     val composeBom by lazy { "androidx.compose:compose-bom:${Versions.composeBomCommon}" }
