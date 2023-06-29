@@ -56,7 +56,7 @@ A well planned architecture is extremely important for an app to scale and all a
 <p align="center"><img src="screenshots/layers.png" alt="Project Structure" width="500"></p>
 
 ### BuildSrc Module
-The ``buildSrc`` layer is responsible for dependency management. It control and manage all dependencies in one place with Kotlin.
+The ``buildSrc`` layer is responsible for dependency management. It control and manage all dependencies in one place with Kotlin.  Check my story on [medium](https://medium.com/@dawinderapps/dependency-management-with-buildsrc-and-kotlin-dsl-f6826e2a2383) if you want to learn about this in detail.
 
 ### App Module
 This module contails all the application relates classes, divided into different packages based on their responsibilities.
