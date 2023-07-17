@@ -26,15 +26,15 @@ A few key concepts and technologies form the cornerstone of this project:
 - [__Kotlin DSL and Gradle__](https://docs.gradle.org/current/userguide/kotlin_dsl.html): The Kotlin DSL provides a type-safe and expressive way to model your project using Kotlin. This project uses Kotlin DSL for Gradle, which allows for writing Gradle build scripts in a more expressive and convenient way, leveraging Kotlin's features such as type-safety, null-safety, and IDE support.
 - [__Centralizing Dependencies__](https://proandroiddev.com/better-dependencies-management-using-buildsrc-kotlin-dsl-eda31cdb81bf): To maintain a clean and manageable build system, this project centralizes its dependencies in a single location, making it easy to manage and update the dependencies across modules​ using ``buildSrc + Kotlin DSL``.
 
-## Music Player Demo 
+## 🖼️ Music Player Demo 
 <p align="center"> 
    <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbTViZTh5aXIyZTNvczRtNDRzaG16NnE1d3U4YXg5bzB6cm1iZmRkdSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/GcMZIVQGyYLuJpYcDN/giphy.gif"/> 
 </p>
 
-## Environment
+## 🌳 Environment
 Android Studio verison used : ``Android Studio Giraffe | 2022.3.1 Beta``
 
-## Architecture
+## 🏗️ Architecture
 A well-planned architecture is extremely important for an app to scale and all architectures have one common goal- to manage the complexity of your app. This isn't something to be worried about in smaller apps however it may prove very useful when working on apps with longer development lifecycles and a bigger team. I have followed [MVVM](https://en.wikipedia.org/wiki/Model–view–viewmodel#/media/File:MVVMPattern.png) and [Jetpack MVVM](https://developer.android.com/topic/libraries/architecture/viewmodel?gclid=Cj0KCQjw7uSkBhDGARIsAMCZNJt_mWWfTKwCpnS5Tm4VMWMgRZtJuM9xZf-env0SIKXA7-VmOt8g3ccaAtWqEALw_wcB&gclsrc=aw.ds) architecture in this project.
 
 ### Why Clean Architecture?
@@ -71,7 +71,7 @@ This module contains all the application relates classes, divided into different
 
 By dividing your code into these packages, you're following the ``principle of separation of concerns``. Each part of your code has a specific responsibility, and it's clear where to find and modify the code for each of these responsibilities. This makes your code easier to ``understand, test, and maintain``.
 
-# Tech Stacks
+## 💻 Tech Stacks
 This project uses many of the popular libraries, plugins, and tools of the android ecosystem.
 
 - [Jetpack Compose](https://developer.android.com/jetpack/compose) - Jetpack Compose is Android’s recommended modern toolkit for building native UI. It simplifies and accelerates UI development on Android. Quickly bring your app to life with less code, powerful tools, and intuitive Kotlin APIs.
@@ -110,7 +110,7 @@ This project uses many of the popular libraries, plugins, and tools of the andro
 
 
 
-## How to use
+## 🔧 How to use
 
 1. Clone this repository to your machine.
 2. Open Android Studio and import the project.
@@ -152,9 +152,10 @@ Please make sure to update tests as appropriate.
 Feel free to ping me 😉
 
 
-## License
+## 📝 License
 
-```license
+
+```
 Copyright © 2023 - DawinderGill
 
 Licensed under the Apache License, Version 2.0 (the "License");
