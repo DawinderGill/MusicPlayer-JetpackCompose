@@ -51,6 +51,7 @@ object Versions {
     const val constraintLayoutCompose = "1.0.1"
     const val glideCompose = "1.0.0-alpha.1"
     const val lottieCompose = "6.0.1"
+    //const val lottieCompose = "5.0.3"
 
     const val hiltAndroid = "2.46"
     const val hiltAndroidCompiler = "2.44"
@@ -63,7 +64,8 @@ object Versions {
     const val androidTestJUnit4 = "1.4.3"
 
     //Plugins
-    const val pluginAndroidApplication = "8.1.0-beta03"
+    const val pluginAndroidApplication = "8.2.0-alpha11"
+    //const val pluginAndroidApplication = "8.1.0-rc01"
     const val pluginKotlinAndroid = "1.8.10"
     const val pluginKotlinJVM = "1.8.10"
     const val pluginDevtoolsKSP = "1.8.10-1.0.9"

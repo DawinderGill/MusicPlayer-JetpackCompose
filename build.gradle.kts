@@ -18,3 +18,4 @@ plugins {
     id(Plugins.pluginHiltAndroid) version Versions.pluginHiltAndroid apply false
     id(Plugins.pluginKotlinJVM) version Versions.pluginKotlinJVM apply false
 }
+
